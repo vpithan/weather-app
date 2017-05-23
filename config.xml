@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.ghelfer.app"
+        versionCode = "1" 
+        version     = "1.0.0" >
+
+    <icon src="images/ico.png" />
+
+    <name>Weather test app</name>
+
+    <description>
+        An example for weather. 
+    </description>   
+
+    <author href="https://www.ghelfer.com" email="ghelfer@gmail.com">
+        Hardeep Shoker 
+    </author>
+    <preference name="android-installLocation" value="auto" />
+    <feature name="http://api.phonegap.com/1.0/network"/>
+</widget>
