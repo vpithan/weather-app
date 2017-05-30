@@ -4,13 +4,13 @@ class WeatherApp {
 		this.weathers = this.getWeathers(data => this.weathers = data)
 		this.filter = {
 			none: () => {
-				$( "#none" ).append(JSON.stringify(this.filterWeathersByDate()))
+				$( "#none" ).append(JSON.stringify(this.filterWeathersByDate()) || "Sem dados.")
 			},
 			lastSevenDays: () => {
 				let dateInit = this.getDate("begin")
 				dateInit.setDate(dateInit.getDate() - 7)
 				let dateEnd = this.getDate("end")
-				$( "#lastSevenDays" ).append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)))
+				$( "#lastSevenDays" ).append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			lastMonth: () => {
 				let dateInit = this.getDate("begin")
@@ -18,7 +18,7 @@ class WeatherApp {
 				dateInit.setDate(1)
 				let dateEnd = this.getDate("end")
 				dateEnd.setDate(0)
-				$("#lastMonth").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)))
+				$("#lastMonth").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			thisMonth: () => {
 				let dateInit = this.getDate("begin")
@@ -26,25 +26,25 @@ class WeatherApp {
 				let dateEnd = this.getDate("end")
 				dateEnd.setMonth(dateEnd.getMonth() + 1)
 				dateEnd.setDate(0)
-				$("#thisMonth").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)))
+				$("#thisMonth").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			lastThirtyDays: () => {
 				let dateInit = this.getDate("begin")
 				dateInit.setDate(dateInit.getDate() - 30)
 				let dateEnd = this.getDate("end")
-				$("#lastThirtyDays").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)))
+				$("#lastThirtyDays").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			yesterday: () => {
 				let dateInit = this.getDate("begin")
 				dateInit.setDate(dateInit.getDate() - 1)
 				let dateEnd = this.getDate("end")
 				dateEnd.setDate(dateInit.getDate() - 1)
-				$("#yesterday").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)))
+				$("#yesterday").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			today: () => {
 				$("#yesterday").append(
 					JSON.stringify(
-						this.filterWeathersByDate(this.getDate("begin"), this.getDate("end"))
+						this.filterWeathersByDate(this.getDate("begin"), this.getDate("end")) || "Sem dados."
 				))
 			}
 		}
