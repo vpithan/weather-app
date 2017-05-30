@@ -38,7 +38,7 @@ class WeatherApp {
 				let dateInit = this.getDate("begin")
 				dateInit.setDate(dateInit.getDate() - 1)
 				let dateEnd = this.getDate("end")
-				dateEnd.setDate(dateInit.getDate() - 1)
+				dateEnd.setDate(dateEnd.getDate() - 1)
 				$("#yesterday").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			today: () => {
