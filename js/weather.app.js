@@ -42,7 +42,7 @@ class WeatherApp {
 				$("#yesterday").append(JSON.stringify(this.filterWeathersByDate(dateInit, dateEnd)) || "Sem dados.")
 			},
 			today: () => {
-				$("#yesterday").append(
+				$("#today").append(
 					JSON.stringify(
 						this.filterWeathersByDate(this.getDate("begin"), this.getDate("end")) || "Sem dados."
 				))
