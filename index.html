@@ -7,19 +7,9 @@
 <link href="jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
 <script src="jquery-mobile/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="jquery-mobile/jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+<script src="js/weather.app.js" charset="utf-8" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
-<script type="text/javascript" charset="utf-8">       
-function getData1() {
-	alert("hello world");
-}
-function getData2() {
-	alert("goodbye world");
-}
-function getData3() {
-	alert("test");
-}
-</script>
-</head>  
+</head>
 <body  style="background-color:white">
 	<div data-role="page" id="page" >
 		<div data-role="header" align="middle" style="background-image: url(images/main-header.png); height: 170px;border: 1px solid white;">
@@ -54,7 +44,7 @@ function getData3() {
 				<li><a href="#page17">Hoje</a></li>
 			</ul>  
 		</div>      
-		<div data-role="footer">			
+		<div data-role="footer">
 			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
 		</div>
 	</div>
@@ -64,8 +54,9 @@ function getData3() {
 			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Todo período</label>
 		</div>
 		<div data-role="content" align="middle" >
-			<button onclick="getData1();">Buscar dados</button>
-		</div>      
+			<button onclick="app.filter.none()">Buscar dados</button>
+			<div id="none"></div>
+		</div>
 		<div data-role="footer">
 			<img src="images/storm.jpg" width="400" alt="" /><br/>
 			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
@@ -77,7 +68,8 @@ function getData3() {
 			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Último mês</label>
 		</div>
 		<div data-role="content" align="middle" >
-			<button  onclick="getData2();">Buscar dados</button>
+			<button  onclick="app.filter.lastMonth()">Buscar dados</button>
+			<div id="lastMonth"></div>
 		</div>      
 		<div data-role="footer">
 			<img src="images/storm.jpg" width="400" alt="" /><br/>
@@ -90,8 +82,65 @@ function getData3() {
 			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Este mês</label>
 		</div>
 		<div data-role="content" align="middle" >
-			<button onclick="getData3();">Buscar dados</button>
+			<button  onclick="app.filter.thisMonth()">Buscar dados</button>
+			<div id="thisMonth"></div>
 		</div>      
+		<div data-role="footer">
+			<img src="images/storm.jpg" width="400" alt="" /><br/>
+			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
+		</div>
+	</div>
+	<div data-role="page" id="page14" data-add-back-btn="true" data-back-btn-text="Back">
+		<div data-role="header" align="middle" style="background-image: url(images/main-header.png); height: 170px;border: 1px solid white;">
+			<img src="images/logo.png" width="130" height="130" alt="" /><br/>
+			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Últimos 30 dias</label>
+		</div>
+		<div data-role="content" align="middle" >
+			<button onclick="app.filter.lastThirtyDays()">Buscar dados</button>
+			<div id="lastThirtyDays"></div>
+		</div>
+		<div data-role="footer">
+			<img src="images/storm.jpg" width="400" alt="" /><br/>
+			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
+		</div>
+	</div>
+	<div data-role="page" id="page15" data-add-back-btn="true" data-back-btn-text="Back">
+		<div data-role="header" align="middle" style="background-image: url(images/main-header.png); height: 170px;border: 1px solid white;">
+			<img src="images/logo.png" width="130" height="130" alt="" /><br/>
+			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Últimos 7 dias</label>
+		</div>
+		<div data-role="content" align="middle" >
+			<button onclick="app.filter.lastSevenDays()">Buscar dados</button>
+			<div id="lastSevenDays"></div>
+		</div>
+		<div data-role="footer">
+			<img src="images/storm.jpg" width="400" alt="" /><br/>
+			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
+		</div>
+	</div>
+	<div data-role="page" id="page16" data-add-back-btn="true" data-back-btn-text="Back">
+		<div data-role="header" align="middle" style="background-image: url(images/main-header.png); height: 170px;border: 1px solid white;">
+			<img src="images/logo.png" width="130" height="130" alt="" /><br/>
+			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Ontem</label>
+		</div>
+		<div data-role="content" align="middle" >
+			<button onclick="app.filter.yesterday()">Buscar dados</button>
+			<div id="yesterday"></div>
+		</div>
+		<div data-role="footer">
+			<img src="images/storm.jpg" width="400" alt="" /><br/>
+			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
+		</div>
+	</div>
+	<div data-role="page" id="page17" data-add-back-btn="true" data-back-btn-text="Back">
+		<div data-role="header" align="middle" style="background-image: url(images/main-header.png); height: 170px;border: 1px solid white;">
+			<img src="images/logo.png" width="130" height="130" alt="" /><br/>
+			<label for="text" align="middle" style="font-size: 24px; color:black; background-color:white">Hoje</label>
+		</div>
+		<div data-role="content" align="middle" >
+			<button onclick="app.filter.today()">Buscar dados</button>
+			<div id="today"></div>
+		</div>
 		<div data-role="footer">
 			<img src="images/storm.jpg" width="400" alt="" /><br/>
 			<label for="text" style="font-size: 12px">©2017 - Weather data.<br/>Todos os direitos reservados.</label>
