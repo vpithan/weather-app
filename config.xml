@@ -16,7 +16,11 @@
     <author href="https://www.ghelfer.com" email="ghelfer@gmail.com">
         Hardeep Shoker 
     </author>
-    <access origin="*"/>
+    
+    <plugin name="cordova-plugin-whitelist" spec="1" /> 
+    <allow-navigation href="*" />
+    <access origin="*" />
+    
     <preference name="android-installLocation" value="auto" />
     <feature name="http://api.phonegap.com/1.0/network"/>
 </widget>
